@@ -1,0 +1,5 @@
+bin/
+commercial-paper/cp.tar.gz
+commercial-paper/**/.gradle
+commercial-paper/**/gateway/connection-org1.yaml
+commercial-paper/**/gateway/connection-org2.yaml
