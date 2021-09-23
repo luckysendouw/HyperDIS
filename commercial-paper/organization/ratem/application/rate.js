@@ -65,10 +65,10 @@ async function main () {
 
         const contract = await network.getContract('papercontract', 'org.papernet.commercialpaper');
 
-        // rate commercial paper
+        // buy commercial paper
         console.log('Submit commercial paper buy transaction.');
 
-        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp', '00001', 'MagnetoCorp', 'RateM', '6000000', '2020-05-31');
+        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp', '00001', 'RateM', '6000000');
 
         // process response
         console.log('Process buy transaction response.');

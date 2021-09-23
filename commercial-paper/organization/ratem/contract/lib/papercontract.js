@@ -98,7 +98,7 @@ class CommercialPaperContract extends Contract {
       * @param {Integer} price price paid for this paper // transaction input - not written to asset
       * @param {String} purchaseDateTime time paper was purchased (i.e. traded)  // transaction input - not written to asset
      */
-     async rate(ctx, issuer, paperNumber, currentOwner, newOwner, price, purchaseDateTime) {
+     async rate(ctx,  issuer, paperNumber, currentOwner, price) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
@@ -106,22 +106,22 @@ class CommercialPaperContract extends Contract {
 
         // Validate current owner
         if (paper.getOwner() !== currentOwner) {
-            throw new Error('\nPaper ' + issuer + paperNumber + ' is not owned by ' + currentOwner);
+            throw new Error('\nPaper ' + rater + paperNumber + ' is not owned by ' + currentOwner);
         }
 
         // First buy moves state from ISSUED to TRADING (when running )
         if (paper.isIssued()) {
-            paper.setTrading();
+            paper.setIsRated();
         }
-
-        // Check paper is not already REDEEMED
-        if (paper.isTrading()) {
-            paper.setOwner(newOwner);
+        
+        // Check paper is not already rated
+        if (paper.isRated()) {
+            paper.setIsRated(price);
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
             paper.setOwnerMSP(mspid);
         } else {
-            throw new Error('\nPaper ' + issuer + paperNumber + ' is not trading. Current state = ' + paper.getCurrentState());
+            throw new Error('\nPaper ' + rater + paperNumber + ' is not rated. Current state = ' + paper.getCurrentState());
         }
 
         // Update the paper
