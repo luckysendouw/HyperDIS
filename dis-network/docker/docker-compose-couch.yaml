@@ -137,8 +137,6 @@ services:
       # match the username and password set for the associated CouchDB.
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org4.dis.com:12051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org4.dis.com:12051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org4.dis.com:12051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org4.dis.com:12051
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     ports:
