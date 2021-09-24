@@ -1,3 +1,5 @@
+sudo chmod 777 -R ${PWD}/commercial-paper/network-clean.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/network-starter.sh
 
 sudo chmod 777 -R ${PWD}/dis-network/network.sh
 
