@@ -7,14 +7,15 @@
 'use strict';
 
 // Utility class for ledger state
-const State = require('./../ledger-api/state.js');
+const State = require('../ledger-api/state.js');
 
 // Enumerate commercial paper state values
 const cpState = {
     ISSUED: 1,
     PENDING: 2,
     TRADING: 3,
-    REDEEMED: 4
+    REDEEMED: 4,
+    RATED: 5
 };
 
 /**
@@ -31,6 +32,14 @@ class CommercialPaper extends State {
     /**
      * Basic getters and setters
     */
+     getRater() {
+        return this.rater;
+    }
+
+    setRater(newRater) {
+        this.rater = newRater;
+    }
+
     getIssuer() {
         return this.issuer;
     }
@@ -58,6 +67,10 @@ class CommercialPaper extends State {
     /**
      * Useful methods to encapsulate commercial paper states
      */
+     setRated() {
+        this.currentState = cpState.RATED;
+    }
+
     setIssued() {
         this.currentState = cpState.ISSUED;
     }
@@ -72,6 +85,10 @@ class CommercialPaper extends State {
 
     setPending() {
         this.currentState = cpState.PENDING;
+    }
+
+    isRated() {
+        return this.currentState === cpState.RATED;
     }
 
     isIssued() {

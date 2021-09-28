@@ -14,7 +14,8 @@ const cpState = {
     ISSUED: 1,
     PENDING: 2,
     TRADING: 3,
-    REDEEMED: 4
+    REDEEMED: 4,
+    RATED: 5
 };
 
 /**

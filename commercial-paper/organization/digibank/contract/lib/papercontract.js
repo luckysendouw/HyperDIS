@@ -87,7 +87,40 @@ class CommercialPaperContract extends Contract {
         return paper;
     }
 
-    /**
+
+    async rate(ctx,  rater, paperNumber, currentOwner, price) {
+
+        // Retrieve the current paper using key fields provided
+        let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
+        let paper = await ctx.paperList.getPaper(paperKey);
+
+        // Validate current owner
+        if (paper.getOwner() !== currentOwner) {
+            throw new Error('\nPaper ' + rater + paperNumber + ' is not owned by ' + currentOwner);
+        }
+
+        // First buy moves state from ISSUED to TRADING (when running )
+        if (paper.isIssued()) {
+            paper.setIsRated();
+        }
+        
+        // Check paper is not already rated
+        if (paper.isRated()) {
+            paper.setRater(rater);
+            paper.setIsRated(price);
+            // save the owner's MSP 
+            let mspid = ctx.clientIdentity.getMSPID();
+            paper.setOwnerMSP(mspid);
+        } else {
+            throw new Error('\nPaper ' + rater + paperNumber + ' is not yet rated. Current state = ' + paper.getCurrentState());
+        }
+
+        // Update the paper
+        await ctx.paperList.updatePaper(paper);
+        return paper;
+    }
+
+       /**
      * Buy commercial paper
      *
       * @param {Context} ctx the transaction context
@@ -98,6 +131,7 @@ class CommercialPaperContract extends Contract {
       * @param {Integer} price price paid for this paper // transaction input - not written to asset
       * @param {String} purchaseDateTime time paper was purchased (i.e. traded)  // transaction input - not written to asset
      */
+ 
     async buy(ctx, issuer, paperNumber, currentOwner, newOwner, price, purchaseDateTime) {
 
         // Retrieve the current paper using key fields provided
@@ -275,7 +309,7 @@ class CommercialPaperContract extends Contract {
     }
 
     /**
-    * queryPartial commercial paper - provide a prefix eg. "DigiBank" will list all papers _issued_ by DigiBank etc etc
+    * queryPartial commercial paper - provide a prefix eg. "RateM" will list all papers _issued_ by RateM etc etc
     * @param {Context} ctx the transaction context
     * @param {String} prefix asset class prefix (added to paperlist namespace) eg. org.papernet.paperMagnetoCorp asset listing: papers issued by MagnetoCorp.
     */
