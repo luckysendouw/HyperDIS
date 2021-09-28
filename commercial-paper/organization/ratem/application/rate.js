@@ -75,7 +75,7 @@ async function main () {
 
         let paper = CommercialPaper.fromBuffer(rateResponse);
 
-        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} and successfully issued for value ${paper.faceValue}`);
+        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater}`);
         console.log('Transaction complete.');
 
     } catch (error) {
