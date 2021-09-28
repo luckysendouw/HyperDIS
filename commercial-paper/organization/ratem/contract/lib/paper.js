@@ -122,7 +122,7 @@ class CommercialPaper extends State {
     static deserialize(data) {
         return State.deserializeClass(data, CommercialPaper);
     }
-
+    
     /**
      * Factory method to create a commercial paper object
      */

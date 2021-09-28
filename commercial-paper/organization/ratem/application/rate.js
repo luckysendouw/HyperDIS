@@ -68,7 +68,7 @@ async function main () {
         // buy commercial paper
         console.log('Submit commercial paper buy transaction.');
 
-        const rateResponse = await contract.submitTransaction('rate','RateM', '00001', 'MagnetoCorp', '6000000');
+        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp','RateM', '00001', 'MagnetoCorp', '6660000');
 
         // process response
         console.log('Process buy transaction response.');
@@ -93,11 +93,11 @@ async function main () {
 }
 main().then(() => {
 
-    console.log('Buy program complete.');
+    console.log('rate program complete.');
 
 }).catch((e) => {
 
-    console.log('Buy program exception.');
+    console.log('rate program exception.');
     console.log(e);
     console.log(e.stack);
     process.exit(-1);

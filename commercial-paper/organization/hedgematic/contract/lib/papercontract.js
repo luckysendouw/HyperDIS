@@ -88,7 +88,7 @@ class CommercialPaperContract extends Contract {
     }
 
 
-    async rate(ctx,  rater, paperNumber, currentOwner, price) {
+    async rate(ctx, issuer, rater, paperNumber, currentOwner, price) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
