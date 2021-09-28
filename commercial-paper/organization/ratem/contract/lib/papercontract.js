@@ -87,18 +87,8 @@ class CommercialPaperContract extends Contract {
         return paper;
     }
 
-    /**
-     * Buy commercial paper
-     *
-      * @param {Context} ctx the transaction context
-      * @param {String} issuer commercial paper issuer
-      * @param {Integer} paperNumber paper number for this issuer
-      * @param {String} currentOwner current owner of paper
-      * @param {String} newOwner new owner of paper
-      * @param {Integer} price price paid for this paper // transaction input - not written to asset
-      * @param {String} purchaseDateTime time paper was purchased (i.e. traded)  // transaction input - not written to asset
-     */
-     async rate(ctx,  issuer, paperNumber, currentOwner, price) {
+
+     async rate(ctx,  rater, paperNumber, currentOwner, price) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
@@ -116,12 +106,13 @@ class CommercialPaperContract extends Contract {
         
         // Check paper is not already rated
         if (paper.isRated()) {
+            paper.setRater(rater);
             paper.setIsRated(price);
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
             paper.setOwnerMSP(mspid);
         } else {
-            throw new Error('\nPaper ' + rater + paperNumber + ' is not rated. Current state = ' + paper.getCurrentState());
+            throw new Error('\nPaper ' + rater + paperNumber + ' is not yet rated. Current state = ' + paper.getCurrentState());
         }
 
         // Update the paper
@@ -129,6 +120,18 @@ class CommercialPaperContract extends Contract {
         return paper;
     }
 
+       /**
+     * Buy commercial paper
+     *
+      * @param {Context} ctx the transaction context
+      * @param {String} issuer commercial paper issuer
+      * @param {Integer} paperNumber paper number for this issuer
+      * @param {String} currentOwner current owner of paper
+      * @param {String} newOwner new owner of paper
+      * @param {Integer} price price paid for this paper // transaction input - not written to asset
+      * @param {String} purchaseDateTime time paper was purchased (i.e. traded)  // transaction input - not written to asset
+     */
+ 
     async buy(ctx, issuer, paperNumber, currentOwner, newOwner, price, purchaseDateTime) {
 
         // Retrieve the current paper using key fields provided

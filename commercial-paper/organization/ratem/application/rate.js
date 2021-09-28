@@ -68,7 +68,7 @@ async function main () {
         // buy commercial paper
         console.log('Submit commercial paper buy transaction.');
 
-        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp', '00001', 'RateM', '6000000');
+        const rateResponse = await contract.submitTransaction('rate','RateM', '00001', 'MagnetoCorp', '6000000');
 
         // process response
         console.log('Process buy transaction response.');
