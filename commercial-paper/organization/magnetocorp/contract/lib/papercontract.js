@@ -88,7 +88,7 @@ class CommercialPaperContract extends Contract {
     }
 
 
-    async rate(ctx, issuer, rater, paperNumber, currentOwner, price) {
+    async rate(ctx, issuer, rater, paperNumber, currentOwner, faceValue) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
@@ -101,13 +101,13 @@ class CommercialPaperContract extends Contract {
 
         // First buy moves state from ISSUED to TRADING (when running )
         if (paper.isIssued()) {
-            paper.setIsRated();
+            paper.setRated();
         }
         
         // Check paper is not already rated
         if (paper.isRated()) {
             paper.setRater(rater);
-            paper.setIsRated(price);
+            paper.setIsRated(parseInt(faceValue));
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
             paper.setOwnerMSP(mspid);

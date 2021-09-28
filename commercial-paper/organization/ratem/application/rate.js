@@ -66,16 +66,16 @@ async function main () {
         const contract = await network.getContract('papercontract', 'org.papernet.commercialpaper');
 
         // buy commercial paper
-        console.log('Submit commercial paper buy transaction.');
+        console.log('Submit commercial paper rate transaction.');
 
         const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp','RateM', '00001', 'MagnetoCorp', '6660000');
 
         // process response
-        console.log('Process buy transaction response.');
+        console.log('Process rate transaction response.');
 
         let paper = CommercialPaper.fromBuffer(rateResponse);
 
-        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully purchased by ${paper.owner}`);
+        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} and successfully issued for value ${paper.faceValue}`);
         console.log('Transaction complete.');
 
     } catch (error) {
