@@ -11,3 +11,10 @@ sudo chmod 777 -R ${PWD}/dis-network/scripts/setAnchorPeer.sh
 sudo chmod 777 -R ${PWD}/dis-network/scripts/utils.sh
 
 sudo chmod 777 -R ${PWD}/dis-network/organizations/ccp-generate.sh
+
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/magnetocorp/magnetocorp.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/digibank/digibank.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/bigfund/bigfund.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/brokerhouse/brokerhouse.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/hedgematic/hedgematic.sh
+sudo chmod 777 -R ${PWD}/commercial-paper/organizations/ratem/ratem.sh
