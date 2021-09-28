@@ -107,7 +107,7 @@ class CommercialPaperContract extends Contract {
         // Check paper is not already rated
         if (paper.isRated()) {
             paper.setRater(rater);
-            paper.setIsRated(parseInt(faceValue));
+            paper.setRated(parseInt(faceValue));
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
             paper.setOwnerMSP(mspid);
