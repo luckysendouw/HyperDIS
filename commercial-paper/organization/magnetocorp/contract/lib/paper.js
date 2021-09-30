@@ -25,7 +25,7 @@ const cpState = {
 class CommercialPaper extends State {
 
     constructor(obj) {
-        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber, obj.rater]);
+        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber]);
         Object.assign(this, obj);
     }
 
@@ -38,6 +38,14 @@ class CommercialPaper extends State {
 
     setRater(newRater) {
         this.rater = newRater;
+    }
+
+    getRate() {
+        return this.rate;
+    }
+
+    setRate(newRate) {
+        this.rate = newRate;
     }
 
     getIssuer() {
@@ -67,7 +75,7 @@ class CommercialPaper extends State {
     /**
      * Useful methods to encapsulate commercial paper states
      */
-     setRated() {
+    setRated() {
         this.currentState = cpState.RATED;
     }
 
@@ -126,13 +134,13 @@ class CommercialPaper extends State {
     /**
      * Factory method to create a commercial paper object
      */
-    static createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {
-        return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue });
+    static createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rate) {
+        return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rate});
     }
 
-    static updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating) {
-        return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating });
-    }
+ //   static updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating) {
+ //       return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating });
+ //   }
     static getClass() {
         return 'org.papernet.commercialpaper';
     }

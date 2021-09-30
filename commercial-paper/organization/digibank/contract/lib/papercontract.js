@@ -65,10 +65,10 @@ class CommercialPaperContract extends Contract {
      * @param {String} maturityDateTime paper maturity date
      * @param {Integer} faceValue face value of paper
     */
-    async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {
+    async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rate) {
 
         // create an instance of the paper
-        let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue));
+        let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rate);
 
         // Smart contract, rather than paper, moves paper into ISSUED state
         paper.setIssued();
@@ -88,7 +88,7 @@ class CommercialPaperContract extends Contract {
     }
 
 
-    async rate(ctx, issuer, rater, paperNumber, currentOwner, faceValue, rating) {
+    async rate(ctx, issuer, rater, paperNumber, currentOwner, faceValue, rate) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
@@ -107,7 +107,8 @@ class CommercialPaperContract extends Contract {
         // Check paper is not already rated
         if (paper.isRated()) {
             paper.setRater(rater);
-            let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
+            paper.setRate(rate);
+            //  let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
            
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
