@@ -68,14 +68,14 @@ async function main () {
         // buy commercial paper
         console.log('Submit commercial paper rate transaction.');
 
-        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp','RateM', '00001', 'MagnetoCorp', '6660000');
+        const rateResponse = await contract.submitTransaction('rate', 'MagnetoCorp','RateM', '00001', 'MagnetoCorp', '6660000', 'AAA');
 
         // process response
         console.log('Process rate transaction response.');
 
         let paper = CommercialPaper.fromBuffer(rateResponse);
 
-        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} and successfully issued for value ${paper.faceValue}`);
+        console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} and successfully issued for value ${paper.rating}`);
         console.log('Transaction complete.');
 
     } catch (error) {

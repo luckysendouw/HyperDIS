@@ -25,7 +25,7 @@ const cpState = {
 class CommercialPaper extends State {
 
     constructor(obj) {
-        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber, obj.rating]);
+        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber, obj.rater]);
         Object.assign(this, obj);
     }
 
