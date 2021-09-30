@@ -102,13 +102,13 @@ class CommercialPaperContract extends Contract {
         // First buy moves state from ISSUED to TRADING (when running )
         if (paper.isIssued()) {
             paper.setRated();
-            let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
         }
         
         // Check paper is not already rated
         if (paper.isRated()) {
             paper.setRater(rater);
-
+            let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
+           
             // save the owner's MSP 
             let mspid = ctx.clientIdentity.getMSPID();
             paper.setOwnerMSP(mspid);
