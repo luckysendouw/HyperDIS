@@ -94,11 +94,6 @@ class CommercialPaperContract extends Contract {
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
         let paper = await ctx.paperList.getPaper(paperKey);
 
-        // Validate current owner
-        if (paper.getOwner() !== currentOwner) {
-            throw new Error('\nPaper ' + rater + paperNumber + ' is not owned by ' + currentOwner);
-        }
-
         // First buy moves state from ISSUED to TRADING (when running )
         if (paper.isIssued()) {
             paper.setRated();
@@ -110,9 +105,6 @@ class CommercialPaperContract extends Contract {
             paper.setRate(rate);
             //  let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
            
-            // save the owner's MSP 
-            let mspid = ctx.clientIdentity.getMSPID();
-            paper.setOwnerMSP(mspid);
         } else {
             throw new Error('\nPaper ' + rater + paperNumber + ' is not yet rated. Current state = ' + paper.getCurrentState());
         }
