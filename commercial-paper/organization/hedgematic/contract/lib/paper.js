@@ -25,7 +25,7 @@ const cpState = {
 class CommercialPaper extends State {
 
     constructor(obj) {
-        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber]);
+        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber, obj.rating]);
         Object.assign(this, obj);
     }
 
@@ -122,7 +122,7 @@ class CommercialPaper extends State {
     static deserialize(data) {
         return State.deserializeClass(data, CommercialPaper);
     }
-
+    
     /**
      * Factory method to create a commercial paper object
      */
@@ -130,6 +130,9 @@ class CommercialPaper extends State {
         return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue });
     }
 
+    static updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating) {
+        return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rating });
+    }
     static getClass() {
         return 'org.papernet.commercialpaper';
     }
