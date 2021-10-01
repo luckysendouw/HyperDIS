@@ -24,7 +24,7 @@ const CommercialPaper = require('../../magnetocorp/contract/lib/paper.js');
 
 
 // Main program function
-async function main (issuer, paperNumber) {
+async function main (ctx, issuer, paperNumber) {
 
     // A wallet stores a collection of identities for use
     const wallet = await Wallets.newFileSystemWallet('../identity/user/samuel/wallet');
