@@ -76,6 +76,7 @@ async function main (ctx, issuer, paperNumber) {
         // let paper = CommercialPaper.fromBuffer(rateResponse);
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
         let paper = await ctx.paperList.getPaper(paperKey);
+        console.log(paper);
 
         console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} with ${paper.rate} rating`);
         console.log('Transaction complete.');
