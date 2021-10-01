@@ -16,9 +16,6 @@
 
 'use strict';
 
-// PaperNet specifc classes
-const PaperList = require('./paperlist');
-
 // Bring key classes into scope, most importantly Fabric SDK network class
 const fs = require('fs');
 const yaml = require('js-yaml');
@@ -76,10 +73,7 @@ async function main (ctx, issuer, paperNumber) {
         // process response
         console.log('Process rate transaction response.');
 
-        // let paper = CommercialPaper.fromBuffer(rateResponse);
-        let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
-        let paper = await ctx.paperList.getPaper(paperKey);
-        console.log(paper);
+        let paper = CommercialPaper.fromBuffer(rateResponse);
 
         console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully rated by ${paper.rater} with ${paper.rate} rating`);
         console.log('Transaction complete.');
