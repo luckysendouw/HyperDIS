@@ -88,7 +88,7 @@ class CommercialPaperContract extends Contract {
     }
 
 
-    async rate(ctx, issuer, rater, paperNumber, currentOwner, faceValue, rate) {
+    async rate(ctx, issuer, rater, paperNumber, rate) {
 
         // Retrieve the current paper using key fields provided
         let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
@@ -103,6 +103,7 @@ class CommercialPaperContract extends Contract {
         if (paper.isRated()) {
             paper.setRater(rater);
             paper.setRate(rate);
+            paper.setRated();
             //  let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
            
         } else {
