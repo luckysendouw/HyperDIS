@@ -102,6 +102,7 @@ class CommercialPaperContract extends Contract {
         // Check paper is not already rated
         if (paper.isRated()) {
             paper.setRater(rater);
+            paper.setRate(rate);
             paper.setRated(rate);
             //  let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
            
