@@ -17,7 +17,7 @@
 'use strict';
 
 // PaperNet specifc classes
-const PaperList = require('./paperlist.js');
+const PaperList = require('./contract/paperlist.js');
 
 // Bring key classes into scope, most importantly Fabric SDK network class
 const fs = require('fs');
