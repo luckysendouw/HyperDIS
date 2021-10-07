@@ -137,8 +137,8 @@ class CommercialPaperContract extends Contract {
             throw new Error('\nPaper ' + issuer + paperNumber + ' is not owned by ' + currentOwner);
         }
 
-        // First buy moves state from ISSUED to TRADING (when running )
-        if (paper.isIssued()) {
+        // First buy moves state from RATED to TRADING (when running )
+        if (paper.isRated()) {
             paper.setTrading();
         }
 
