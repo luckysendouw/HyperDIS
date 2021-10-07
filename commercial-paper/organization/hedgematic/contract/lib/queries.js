@@ -182,6 +182,9 @@ class QueryUtils {
                                 case 4:
                                     jsonRes.Value.currentState = 'REDEEMED';
                                     break;
+                                case 5:
+                                    jsonRes.Value.currentState = 'RATED';
+                                    break;
                                 default: // else, unknown named query
                                     jsonRes.Value.currentState = 'UNKNOWN';
                             }

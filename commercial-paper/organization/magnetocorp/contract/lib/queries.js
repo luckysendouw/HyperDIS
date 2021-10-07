@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
 */
+
 'use strict';
 
 const State = require('../ledger-api/state.js');
@@ -180,6 +181,9 @@ class QueryUtils {
                                     break;
                                 case 4:
                                     jsonRes.Value.currentState = 'REDEEMED';
+                                    break;
+                                case 5:
+                                    jsonRes.Value.currentState = 'RATED';
                                     break;
                                 default: // else, unknown named query
                                     jsonRes.Value.currentState = 'UNKNOWN';
