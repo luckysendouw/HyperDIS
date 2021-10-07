@@ -68,12 +68,12 @@ async function main () {
         // buy commercial paper
         console.log('Submit commercial paper buy transaction.');
 
-        const buyResponse = await contract.submitTransaction('buy', 'MagnetoCorp', '00001', 'MagnetoCorp', 'DigiBank', '4900000', '2020-05-31');
+        const buyResponse = await contract.submitTransaction('buy', 'MagnetoCorp', '00001', 'MagnetoCorp', 'DigiBank', '500000', '2020-05-31');
 
         // process response
         console.log('Process buy transaction response.');
 
-        let paper = CommercialPaper.fromBuffer(buyResponse);
+        let paper = CommercialPaper.fromBuffer(buyResponse);s
 
         console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully purchased by ${paper.owner}`);
         console.log('Transaction complete.');
