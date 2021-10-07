@@ -65,10 +65,10 @@ class CommercialPaperContract extends Contract {
      * @param {String} maturityDateTime paper maturity date
      * @param {Integer} faceValue face value of paper
     */
-    async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue, rate) {
+    async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue,) {
 
         // create an instance of the paper
-        let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rate);
+        let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue));
 
         // Smart contract, rather than paper, moves paper into ISSUED state
         paper.setIssued();
