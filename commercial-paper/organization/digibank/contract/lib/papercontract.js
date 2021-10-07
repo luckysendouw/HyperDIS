@@ -103,7 +103,10 @@ class CommercialPaperContract extends Contract {
         if (paper.isRated()) {
             paper.setRater(rater);
             paper.setRate(rate);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/frommac
             //  let paper = CommercialPaper.updateInstance(issuer, paperNumber, issueDateTime, maturityDateTime, parseInt(faceValue), rating);
            
         } else {
