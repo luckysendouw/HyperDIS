@@ -150,7 +150,7 @@ class CommercialPaperContract extends Contract {
             paper.setOwnerMSP(mspid);
         } else {
             throw new Error('\nPaper ' + issuer + paperNumber + ' is not trading. Current state = ' + paper.getCurrentState());
-        }no
+        }
 
         // Update the paper
         await ctx.paperList.updatePaper(paper);
